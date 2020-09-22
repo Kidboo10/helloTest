@@ -1,4 +1,7 @@
-language: ruby
-rvm:
-  - 2.2
-  - jruby
+language: java
+install: skip
+os: linux
+jdk: openjdk14
+script:
+  - chmod +x ./gradlew
+  - "./gradlew clean build"
