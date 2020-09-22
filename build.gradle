@@ -12,6 +12,7 @@ sourceCompatibility = '14'
 sonarqube {
 	properties {
 		property "sonar.projectKey", "Kidboo10_helloTest"
+		property "sonar.host.url", "https://sonarcloud.io"
 	}
 }
 

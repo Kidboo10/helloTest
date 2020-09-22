@@ -2,11 +2,6 @@ language: java
 install: skip
 os: linux
 jdk: openjdk14
-addons:
-  sonarcloud:
-    organization: kidboo10
-    token:
-      secure: l/zI07q+ba0gHEEGexUlOSkTjQEp02CYu/uUR0R5mzM5E5OWFRWO44Y7TKt6ryIxOmiTgT0EcMsiojVPM/aj/1j8LXqxluDFi8lKXTn7dxNgbEAxlc+3SmRL1W2eJjfgi67yOubu9SuhWhaBmVtZAwREUIy2vSpJBoWI6MBKqX83n7Lkt0CLy1xHMSHBokSfhyEPSXpcSVcnN8B7NdM86W9YShE62fAsLGe7mqiTzyQ/Zv0k1YJuWUtqE4xkhJeFeXxurji0F/+fglEf8VMwahxCQ8BZyCvP1YMhJVki5VROKCa5lTcJtptKJKKZLNkq/nUKeas33OAs0l2UqownQaycHABcAXIOLOVaHQInVcrVgFtgzDUfYNEVgeQ1HujUCEgfjotVpK0amDOnk4U4+/c99pRF+LNDF52vuI/TdokphetT9mNhV33gk32saDqUPzGKhfwucKtDLt1eaWSJXwDxxW+43pTdpWSW9+Tqj5VEz6z56fh8xR75SwTYNR1U3u1pRWMpXBag8JH9qTeIfNfk9wgbi+6QNCXCYXzL6Zvb23eeEbrdQ8cTXxuzhZ7ahedyhq2NvGUE00Tn+4AKjnsXp2KBOJH9Rv30846W0eMOXI5kHi3h4zslWq1pd1TWu3rRwKJ2zyzmyWhT9ZmFPympHTOGP97w2E/My4vKByI=
 deploy:
   provider: heroku
   api_key:
@@ -14,6 +9,11 @@ deploy:
   app: helloTest
   on:
     repo: Kidboo10/helloTest
+addons:
+  sonarcloud:
+    organization: kidboo10
+    token:
+      secure: l/zI07q+ba0gHEEGexUlOSkTjQEp02CYu/uUR0R5mzM5E5OWFRWO44Y7TKt6ryIxOmiTgT0EcMsiojVPM/aj/1j8LXqxluDFi8lKXTn7dxNgbEAxlc+3SmRL1W2eJjfgi67yOubu9SuhWhaBmVtZAwREUIy2vSpJBoWI6MBKqX83n7Lkt0CLy1xHMSHBokSfhyEPSXpcSVcnN8B7NdM86W9YShE62fAsLGe7mqiTzyQ/Zv0k1YJuWUtqE4xkhJeFeXxurji0F/+fglEf8VMwahxCQ8BZyCvP1YMhJVki5VROKCa5lTcJtptKJKKZLNkq/nUKeas33OAs0l2UqownQaycHABcAXIOLOVaHQInVcrVgFtgzDUfYNEVgeQ1HujUCEgfjotVpK0amDOnk4U4+/c99pRF+LNDF52vuI/TdokphetT9mNhV33gk32saDqUPzGKhfwucKtDLt1eaWSJXwDxxW+43pTdpWSW9+Tqj5VEz6z56fh8xR75SwTYNR1U3u1pRWMpXBag8JH9qTeIfNfk9wgbi+6QNCXCYXzL6Zvb23eeEbrdQ8cTXxuzhZ7ahedyhq2NvGUE00Tn+4AKjnsXp2KBOJH9Rv30846W0eMOXI5kHi3h4zslWq1pd1TWu3rRwKJ2zyzmyWhT9ZmFPympHTOGP97w2E/My4vKByI=
 script:
   - chmod +x ./gradlew
   - "./gradlew clean build"
