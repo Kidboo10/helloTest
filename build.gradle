@@ -1,32 +1,84 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
-	id 'org.springframework.boot' version '2.3.4.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-	id 'java'
-	id "org.sonarqube" version "3.0"
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+    id "org.sonarqube" version "3.0"
+    id 'jacoco'
 }
 
 group = 'com.example.helloworld'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '14'
 
-sonarqube {
-	properties {
-		property "sonar.projectKey", "Kidboo10_helloTest"
-		property "sonar.host.url", "https://sonarcloud.io"
+test {
+    useJUnitPlatform()
+    reports.html.enabled(true)
+    finalizedBy(jacocoTestReport)
+}
+
+jacocoTestReport() {
+    dependsOn(test)
+    reports {
+		xml.enabled true
+		csv.enabled false
+		html.destination file("${buildDir}/jacocoHtml")
 	}
+		afterEvaluate {
+			classDirectories.setFrom(files(classDirectories.files.collect {
+				fileTree(dir: it, exclude: '**/HelloApplication.*')
+			}))
+		}
+    }
+
+    sonarqube {
+        properties {
+            property "sonar.projectKey", "Kidboo10_helloTest"
+            property "sonar.host.url", "https://sonarcloud.io"
+			property "sonar.coverage.jacoco.xmlReportsPath","build/jacocoReport/test/jacocoTestReport.xml"
+        }
+    }
+
+    jacoco {
+        toolVersion = "0.8.5"
+        reportsDir = file("$buildDir/jacocoReport")
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+
+task stage {
+	doFirst { clean }
+	dependsOn(build)
+	dependsOn(jacocoTestReport)
 }
 
-repositories {
-	mavenCentral()
-}
-
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+tasks.withType(Test) {
+	testLogging {
+		testLogging.events.add(TestLogEvent.PASSED)
+		testLogging.events.add(TestLogEvent.FAILED)
+		testLogging.events.add(TestLogEvent.SKIPPED)
+		testLogging.exceptionFormat(TestExceptionFormat.FULL)
+		testLogging.showCauses(true)
+		testLogging.showExceptions(true)
+		testLogging.showStackTraces(true)
 	}
 }
 
 test {
 	useJUnitPlatform()
 }
+
+compileJava
+compileTestJava
+jacocoTestReport
