@@ -6,7 +6,7 @@ deploy:
   provider: heroku
   api_key:
     secure: jUL41X+/Y51Plb3a7uA8YEXkDWtbtKbMd1I96MeESdj8tBYJka3Zi0jRs1uZEcqwhLbiBV4zNjAl6VeiXJEJnRrJGoOvFiz96lxTnPKJj0tHQa6veMXN9FaTPys9FsP862FGMkVZtL4nqj3c1h1sdpiwUiIpmZpspDtWBQNShmYu4SdO4+Kftg+P8N/pyz2EM8IAmqlW229aG64i5a9cOq8uTcYOSdSheFGJsKQbr/pn3MdoO6dzFGAafteas4dvKnEJj4GVdjnGG3Uh+64BvsgE9ihX5V4FLp+D5cbLNB+3HABgg1o0fpB76d8hPfMji6nMgdyfPV9n4eT8UnMm3abxaCwHYH829BcWHC+Leqg7Zz+BT7ZVdVijN8vGfvWmvr3+ksMgyEn2fwmdMDEefkWhl7njxILa2aBwG7SqP/oqlUUsoLT2PwSfSNiGMQOvboILoV2cIusHRfzERFOyTmNocKVQixelS3wWQzpvn53idmlbnf1nKa8lWjkwg+J90yejKjblAj/DnO6YKgtWEpbg41qWo/jgLb5MpkIMb5pMpG9zYXyfGHSPQ8SnXMG86gbQvZdJnI5ADcU+4r7ynxPU5t/BdkuR/dB4CSMWTQFqj6r44VKoEvURdFTVs19emsY2bB/QkGahveOv6ylvY/W8FS0brbxlOBb/DPUauSE=
-  app: helloTest
+  app: hellopipe
   on:
     repo: Kidboo10/helloTest
 addons:
