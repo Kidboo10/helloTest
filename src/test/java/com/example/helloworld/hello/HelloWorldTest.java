@@ -10,5 +10,6 @@ class HelloWorldTest {
     void testHello() {
         String result = helloWorld.hello();
         Assertions.assertEquals("Hello world", result);
+
     }
 }
